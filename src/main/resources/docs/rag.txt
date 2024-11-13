@@ -1,0 +1,91 @@
+1. Khái niệm tổng quát
+RAG(Retrieval-Augmented Generation) là một kỹ thuật giúp mô hình trả lời các câu hỏi một cách chính xác hơn bằng cách kết hợp giữa hai bước:
+•	Truy xuất thông tin: Lấy các tài liệu liên quan từ một nguồn dữ liệu bên ngoài.
+•	Tạo văn bản: Sử dụng các tài liệu vừa tìm được để tạo ra câu trả lời tự nhiên và có nội dung chính xác.
+Bước 1: Truy xuất thông tin (Retrieval)
+Khi bạn đặt một câu hỏi cho hệ thống RAG, thay vì chỉ dựa vào kiến thức nội bộ có sẵn trong mô hình (như GPT), nó sẽ tìm kiếm thêm thông tin từ một nguồn dữ liệu lớn bên ngoài. Nguồn dữ liệu này có thể là:
+•	Các bài viết, tài liệu, hoặc cơ sở dữ liệu, nguồn thông tin trên internet mà mô hình có thể truy cập.
+•	Ví dụ: Một hệ thống hỏi-đáp có thể tìm kiếm thông tin từ hàng ngàn tài liệu y khoa khi bạn hỏi về một bệnh cụ thể.
+Cách hoạt động:
+•	Hệ thống sẽ chuyển câu hỏi của bạn thành một dạng biểu diễn số học (embedding) và so sánh nó với các đoạn văn hoặc tài liệu trong cơ sở dữ liệu.
+•	Công cụ tìm kiếm sẽ chọn ra những tài liệu có nội dung gần giống hoặc liên quan đến câu hỏi của bạn nhất.
+Ví dụ: Khi bạn hỏi "RAG là gì?", hệ thống sẽ tìm kiếm trong cơ sở dữ liệu các đoạn văn bản có chứa thông tin về RAG, như định nghĩa, cách hoạt động,...
+Bước 2: Tạo văn bản (Generation)
+Sau khi hệ thống tìm được những tài liệu liên quan, nó sẽ kết hợp các thông tin đó lại và dùng một mô hình ngôn ngữ lớn (LLM) như GPT hoặc BART để tạo câu trả lời.
+Cách hoạt động:
+•	Mô hình sẽ đọc những tài liệu vừa truy xuất được, hiểu nội dung, sau đó tự động viết ra một câu trả lời hoàn chỉnh dựa trên thông tin từ tài liệu.
+•	Điểm mạnh là mô hình không chỉ dựa vào những gì đã học sẵn, mà còn cập nhật kiến thức mới từ các tài liệu vừa tìm được.
+Ví dụ: Sau khi truy xuất được vài đoạn văn bản về RAG, hệ thống sẽ dùng LLM để tạo ra câu trả lời đầy đủ như: "RAG là kỹ thuật kết hợp truy xuất thông tin từ cơ sở dữ liệu với mô hình ngôn ngữ để trả lời câu hỏi."
+Lợi ích của RAG
+•	Customization: ta có thể chọn những thông tin nào sẽ được sử dụng để giúp tạo ra những phản hồi đó. Nhờ vào đó mà mình sẽ nhận kết quả mà mình mong muốn.
+VD: về web bán hàng, sẽ cho database của shop để khi khách hàng hỏi thì chatbot sẽ trả lời những gì liên quan tới cửa hàng, đúng với điều mình muốn.
+•	Realtime: RAG cho phép LLM truy vấn thông tin mới từ các tài liệu bên ngoài và cung cấp câu trả lời chính xác hơn trong thời gian ngắn mà không cần phải huấn luyện lại mô hình. Điều này giúp tiết kiệm thời gian và tài nguyên so với việc phải retrain mô hình mỗi khi cần cập nhật kiến thức mới. Khi có thông tin mới hoặc cần cập nhật nội dung, chỉ cần bổ sung dữ liệu mới vào hệ thống retrieval. RAG giúp mô hình ngôn ngữ trở nên linh hoạt, vì nó có thể dễ dàng kết nối với nhiều nguồn dữ liệu bên ngoài mà không phải thay đổi cấu trúc hoặc nội dung mô hình ban đầu.
+•	Accuracy: với RAG, ta có thể cung cấp cho nó thông tin cụ thể để hỗ trợ trả lời câu hỏi giúp cải thiện độ chính xác và phù hợp với câu hỏi mà hầu hết người dùng của bạn có thể hỏi. 
+VD: chatbot trả cửa hàng bán đồ thời trang, sẽ trả lời những câu hỏi liên quan đến cửa hàng.
+
+Để chạy RAG (Retrieval-Augmented Generation) trong LMStudio, bạn cần làm theo các bước sau:
+1. Chuẩn bị mô hình LLM và tài liệu
+•	Mô hình LLM: LMStudio cho phép chạy các mô hình ngôn ngữ lớn (LLM), chẳng hạn như GPT. Bạn cần tải và chuẩn bị một mô hình LLM trên LMStudio.
+•	Dữ liệu truy vấn: Bạn sẽ cần có một cơ sở dữ liệu văn bản hoặc tài liệu để mô hình có thể truy vấn thông tin. Dữ liệu này thường được lưu trữ trong một tập hợp các đoạn văn, file văn bản hoặc cơ sở dữ liệu.
+2. Tải mô hình trong LMStudio
+•	Mở LMStudio và chọn mô hình ngôn ngữ bạn muốn chạy (có thể tải từ Hugging Face hoặc các nguồn khác).
+•	Bạn đã có NVIDIA GeForce RTX 3050, đảm bảo rằng GPU của bạn đã được kích hoạt để mô hình LLM chạy mượt mà hơn. Nếu chưa kích hoạt được, có thể bạn sẽ cần khắc phục vấn đề này trước khi tiến hành.
+3. Tích hợp RAG trong LMStudio
+•	Bước tích hợp RAG gồm hai phần: truy vấn dữ liệu (retrieval) và tạo văn bản (generation). Bạn có thể sử dụng các thư viện như FAISS (Facebook AI Similarity Search) để xây dựng hệ thống truy vấn.
+Dưới đây là quy trình chi tiết:
+•	Truy vấn (Retrieval): Tích hợp công cụ tìm kiếm dựa trên ngữ nghĩa, như FAISS, để truy vấn tài liệu từ tập dữ liệu bạn đã chuẩn bị.
+•	Tạo văn bản (Generation): Sử dụng mô hình LLM để tạo câu trả lời dựa trên thông tin truy vấn được.
+Ví dụ mã Python cho RAG (dùng FAISS và GPT-like model):
+python
+Sao chép mã
+# 1. Tải mô hình ngôn ngữ lớn
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+import faiss
+
+tokenizer = AutoTokenizer.from_pretrained("facebook/bart-large")
+model = AutoModelForSeq2SeqLM.from_pretrained("facebook/bart-large")
+
+# 2. Chuẩn bị cơ sở dữ liệu văn bản với FAISS
+# Giả sử bạn có một danh sách các văn bản được lưu trong `docs`
+index = faiss.IndexFlatL2(768)  # Sử dụng FAISS cho truy vấn vector
+
+# 3. Xây dựng hệ thống truy vấn
+def encode_documents(docs, tokenizer, model):
+    inputs = tokenizer(docs, return_tensors="pt", padding=True, truncation=True)
+    outputs = model(**inputs)
+    vectors = outputs.last_hidden_state[:, 0, :]
+    return vectors.detach().numpy()
+
+# Tạo vector embedding cho các tài liệu
+doc_vectors = encode_documents(docs, tokenizer, model)
+index.add(doc_vectors)
+
+# 4. Truy xuất tài liệu khi có truy vấn
+def retrieve(query, tokenizer, model, index):
+    query_vec = encode_documents([query], tokenizer, model)
+    D, I = index.search(query_vec, k=5)  # Tìm 5 tài liệu liên quan nhất
+    return I  # Trả về các chỉ số của tài liệu liên quan
+
+# 5. Tạo văn bản dựa trên kết quả truy vấn
+def generate_answer(query, docs, tokenizer, model):
+    relevant_docs = retrieve(query, tokenizer, model, index)
+    input_text = " ".join([docs[i] for i in relevant_docs])
+    inputs = tokenizer(input_text, return_tensors="pt")
+    outputs = model.generate(inputs.input_ids)
+    return tokenizer.decode(outputs[0], skip_special_tokens=True)
+
+# Ví dụ: hỏi mô hình
+query = "What is the role of RAG in NLP?"
+answer = generate_answer(query, docs, tokenizer, model)
+print(answer)
+4. Thực thi trong LMStudio
+•	Chạy mã trên thông qua giao diện của LMStudio. Bạn có thể điều chỉnh để phù hợp với mô hình và tài liệu của mình.
+•	LMStudio sẽ giúp bạn theo dõi hiệu năng của mô hình khi chạy qua GPU.
+5. Tùy chỉnh thêm
+•	Tối ưu hóa mô hình và tài liệu của bạn để cải thiện độ chính xác và tốc độ.
+•	LMStudio cho phép bạn theo dõi và quản lý tài nguyên khi chạy các mô hình, nên bạn có thể điều chỉnh tùy chọn sử dụng GPU và bộ nhớ.
+
+AI là gì?
+Một thuật ngữ ko còn mấy xa lạ nhưng chưa chắc rằng ai cũng hiểu nó là gì? Thậm chí là chúng ta sử dụng hằng ngày mà vẫn ko biết đó là AI.
+ AI (Trí tuệ nhân tạo) là sự mô phỏng quy trình trí tuệ con người bằng máy móc, đặc biệt là các hệ thống máy tính. Các ứng dụng của AI bao gồm hệ thống chuyên gia, xử lý ngôn ngữ tự nhiên (NLP), nhận diện giọng nói và học máy.
+Mở khóa điện thoại bằng Face ID của Iphone
