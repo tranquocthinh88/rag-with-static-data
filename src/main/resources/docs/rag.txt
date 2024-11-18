@@ -86,6 +86,13 @@ print(answer)
 •	LMStudio cho phép bạn theo dõi và quản lý tài nguyên khi chạy các mô hình, nên bạn có thể điều chỉnh tùy chọn sử dụng GPU và bộ nhớ.
 
 AI là gì?
-Một thuật ngữ ko còn mấy xa lạ nhưng chưa chắc rằng ai cũng hiểu nó là gì? Thậm chí là chúng ta sử dụng hằng ngày mà vẫn ko biết đó là AI.
- AI (Trí tuệ nhân tạo) là sự mô phỏng quy trình trí tuệ con người bằng máy móc, đặc biệt là các hệ thống máy tính. Các ứng dụng của AI bao gồm hệ thống chuyên gia, xử lý ngôn ngữ tự nhiên (NLP), nhận diện giọng nói và học máy.
-Mở khóa điện thoại bằng Face ID của Iphone
+-AI là một thuật ngữ ko còn mấy xa lạ nhưng chưa chắc rằng ai cũng hiểu nó là gì? Thậm chí là chúng ta sử dụng hằng ngày mà vẫn ko biết đó là AI.
+-AI (Trí tuệ nhân tạo) là sự mô phỏng quy trình trí tuệ con người bằng máy móc, đặc biệt là các hệ thống máy tính. Các ứng dụng của AI bao gồm hệ thống chuyên gia, xử lý ngôn ngữ tự nhiên (NLP), nhận diện giọng nói và học máy.
+-Mở khóa điện thoại bằng Face ID của Iphone
+
+Áo khoác da cá sấu, dành cho Nam, gợi lên phong cách có giá là 100000 VND
+Áo khoác da bò, dành cho Nữ, gợi lên phong cách có giá là 90000 VND
+Áo khoác da cá sấu, dành cho Nam, gợi lên phong cách có giá là 150000 VND
+Áo sơ mi hàn quốc tay ngắn cho Nữ dưới 30 tuổi, mặc là ghiền có giá 120000 VND
+Áo sơ mi hàn quốc cho nữ, mặc là ghiền có giá 80000 VND
+Áo sơ mi hàn quốc cho Nam trên 18 tuổi, mặc là ghiền có giá 150000 VND
